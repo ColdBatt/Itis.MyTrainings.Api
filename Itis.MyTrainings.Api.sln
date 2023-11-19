@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itis.MyTrainings.Api.Web", "Itis.MyTrainings.Api.Web\Itis.MyTrainings.Api.Web.csproj", "{293B863C-47B7-43CF-86DB-8B8F470F447C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84E0C970-576C-4FB7-A64C-A15B8C4E6E49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itis.MyTrainings.Api.PostgreSql", "Itis.MyTrainings.Api.PostgreSql\Itis.MyTrainings.Api.PostgreSql.csproj", "{D8CDBFF3-4DF8-4834-B600-344CC5210C1F}"
@@ -14,10 +12,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{293B863C-47B7-43CF-86DB-8B8F470F447C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{293B863C-47B7-43CF-86DB-8B8F470F447C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{293B863C-47B7-43CF-86DB-8B8F470F447C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{293B863C-47B7-43CF-86DB-8B8F470F447C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D8CDBFF3-4DF8-4834-B600-344CC5210C1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D8CDBFF3-4DF8-4834-B600-344CC5210C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8CDBFF3-4DF8-4834-B600-344CC5210C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -28,7 +22,6 @@ Global
 		{252BD46E-7874-428A-8E2E-408513B8B888}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{293B863C-47B7-43CF-86DB-8B8F470F447C} = {84E0C970-576C-4FB7-A64C-A15B8C4E6E49}
 		{D8CDBFF3-4DF8-4834-B600-344CC5210C1F} = {84E0C970-576C-4FB7-A64C-A15B8C4E6E49}
 		{252BD46E-7874-428A-8E2E-408513B8B888} = {84E0C970-576C-4FB7-A64C-A15B8C4E6E49}
 	EndGlobalSection
