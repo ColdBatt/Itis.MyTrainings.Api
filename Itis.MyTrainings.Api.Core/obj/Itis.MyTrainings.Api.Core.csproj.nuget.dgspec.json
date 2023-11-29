@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\anton\\RiderProjects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj": {}
+    "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\anton\\RiderProjects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj": {
+    "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anton\\RiderProjects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj",
+        "projectUniqueName": "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj",
         "projectName": "Itis.MyTrainings.Api.Core",
-        "projectPath": "C:\\Users\\anton\\RiderProjects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj",
+        "projectPath": "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj",
         "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anton\\RiderProjects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\obj\\",
+        "outputPath": "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
