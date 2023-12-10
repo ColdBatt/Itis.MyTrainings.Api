@@ -1,0 +1,13 @@
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\bin\Debug\net7.0\Itis.MyTrainings.Api.Contracts.deps.json
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\bin\Debug\net7.0\Itis.MyTrainings.Api.Contracts.dll
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\bin\Debug\net7.0\Itis.MyTrainings.Api.Contracts.pdb
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\Itis.MyTrainings.Api.Contracts.csproj.AssemblyReference.cache
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\Itis.MyTrainings.Api.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\Itis.MyTrainings.Api.Contracts.AssemblyInfoInputs.cache
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\Itis.MyTrainings.Api.Contracts.AssemblyInfo.cs
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\Itis.MyTrainings.Api.Contracts.csproj.CoreCompileInputs.cache
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\Itis.MyTrainings.Api.Contracts.sourcelink.json
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\Itis.MyTrainings.Api.Contracts.dll
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\refint\Itis.MyTrainings.Api.Contracts.dll
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\Itis.MyTrainings.Api.Contracts.pdb
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Contracts\obj\Debug\net7.0\ref\Itis.MyTrainings.Api.Contracts.dll

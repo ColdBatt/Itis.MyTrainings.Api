@@ -6,4 +6,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Itis.MyTrainings.Api.Contracts\Itis.MyTrainings.Api.Contracts.csproj" />
+    </ItemGroup>
+
 </Project>
