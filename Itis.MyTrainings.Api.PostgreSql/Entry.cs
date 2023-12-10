@@ -1,4 +1,5 @@
-﻿using Itis.MyTrainings.Api.Core.Abstractions;
+﻿
+using Itis.MyTrainings.Api.Core.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

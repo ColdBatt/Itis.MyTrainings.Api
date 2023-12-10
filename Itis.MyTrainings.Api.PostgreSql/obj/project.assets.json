@@ -305,9 +305,6 @@
       "Itis.MyTrainings.Api.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.12"
-        },
         "compile": {
           "bin/placeholder/Itis.MyTrainings.Api.Core.dll": {}
         },
@@ -758,19 +755,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\anton\\.nuget\\packages\\": {}
+    "C:\\Users\\klimk\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.PostgreSql\\Itis.MyTrainings.Api.PostgreSql.csproj",
+      "projectUniqueName": "C:\\C# projects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.PostgreSql\\Itis.MyTrainings.Api.PostgreSql.csproj",
       "projectName": "Itis.MyTrainings.Api.PostgreSql",
-      "projectPath": "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.PostgreSql\\Itis.MyTrainings.Api.PostgreSql.csproj",
-      "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.PostgreSql\\obj\\",
+      "projectPath": "C:\\C# projects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.PostgreSql\\Itis.MyTrainings.Api.PostgreSql.csproj",
+      "packagesPath": "C:\\Users\\klimk\\.nuget\\packages\\",
+      "outputPath": "C:\\C# projects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.PostgreSql\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\klimk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -778,16 +780,16 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {},
-        "https://dotnet.myget.org/feed/dotnet-core/package/nuget/Microsoft.NET.Sdk.IL": {},
         "https://tfs.a2soft.ru/A2SoftRU/_packaging/A2Soft/nuget/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj": {
-              "projectPath": "C:\\Users\\anton\\repo\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj"
+            "C:\\C# projects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj": {
+              "projectPath": "C:\\C# projects\\Itis.MyTrainings.Api\\Itis.MyTrainings.Api.Core\\Itis.MyTrainings.Api.Core.csproj"
             }
           }
         }
@@ -839,7 +841,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
