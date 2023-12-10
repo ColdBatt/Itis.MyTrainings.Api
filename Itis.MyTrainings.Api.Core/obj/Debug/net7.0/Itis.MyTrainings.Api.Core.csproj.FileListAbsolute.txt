@@ -1,0 +1,16 @@
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\bin\Debug\net7.0\Itis.MyTrainings.Api.Core.deps.json
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\bin\Debug\net7.0\Itis.MyTrainings.Api.Core.dll
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\bin\Debug\net7.0\Itis.MyTrainings.Api.Core.pdb
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.csproj.AssemblyReference.cache
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.AssemblyInfoInputs.cache
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.AssemblyInfo.cs
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.csproj.CoreCompileInputs.cache
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.sourcelink.json
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.dll
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\refint\Itis.MyTrainings.Api.Core.dll
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.pdb
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\ref\Itis.MyTrainings.Api.Core.dll
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\bin\Debug\net7.0\Itis.MyTrainings.Api.Contracts.dll
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\bin\Debug\net7.0\Itis.MyTrainings.Api.Contracts.pdb
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.csproj.CopyComplete
