@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Itis.MyTrainings.Api.Contracts.Requests.User.RegusterUser;
+namespace Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUser;
 
 /// <summary>
 /// Ответ на запрос <see cref="RegisterUserRequest"/>

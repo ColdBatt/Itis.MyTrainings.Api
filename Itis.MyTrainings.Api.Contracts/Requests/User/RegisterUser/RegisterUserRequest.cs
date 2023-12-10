@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Itis.MyTrainings.Api.Contracts.Requests.User.RegusterUser;
+namespace Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUser;
 
 /// <summary>
 /// Запрос на регистрацию пользователя
@@ -24,6 +24,12 @@ public class RegisterUserRequest
     /// </summary>
     [Required]
     public string LastName { get; set; } = default!;
+
+    /// <summary>
+    /// Роль
+    /// </summary>
+    [Required]
+    public string Role { get; set; } = default!;
 
     /// <summary>
     /// Почта

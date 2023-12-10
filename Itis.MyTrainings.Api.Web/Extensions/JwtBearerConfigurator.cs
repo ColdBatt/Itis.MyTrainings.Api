@@ -18,7 +18,8 @@ public static class JwtBearerConfigurator
 
         var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
         
-        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        builder.Services
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters

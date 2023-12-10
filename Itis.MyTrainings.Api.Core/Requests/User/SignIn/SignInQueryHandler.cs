@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Itis.MyTrainings.Api.Contracts.Requests.User.SignIn;
 using Itis.MyTrainings.Api.Core.Abstractions;
 using Itis.MyTrainings.Api.Core.Exceptions;
@@ -39,7 +40,11 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, SignInResponse>
         string token = null!;
 
         if (result.Succeeded)
-            token = _jwtService.GenerateJwt(user.Id);
+        {
+            var claims = await _userService.GetClaimsAsync(user);
+            var role = claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)!.Value;
+            token = _jwtService.GenerateJwt(user.Id, role);
+        }
 
         return new SignInResponse(result, token);
     }
