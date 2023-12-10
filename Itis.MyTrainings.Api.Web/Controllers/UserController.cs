@@ -1,4 +1,4 @@
-﻿using Itis.MyTrainings.Api.Contracts.Requests.User.RegusterUser;
+﻿using Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUser;
 using Itis.MyTrainings.Api.Contracts.Requests.User.SignIn;
 using Itis.MyTrainings.Api.Core.Requests.User.RegisterUser;
 using Itis.MyTrainings.Api.Core.Requests.User.SignIn;
@@ -28,6 +28,7 @@ public class UserController: Controller
             UserName = request.UserName,
             FirstName = request.FirstName,
             LastName = request.LastName,
+            Role = request.Role,
             Email = request.Email,
             Password = request.Password
         },

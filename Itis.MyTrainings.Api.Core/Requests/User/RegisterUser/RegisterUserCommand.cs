@@ -1,4 +1,4 @@
-﻿using Itis.MyTrainings.Api.Contracts.Requests.User.RegusterUser;
+﻿using Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUser;
 using MediatR;
 
 namespace Itis.MyTrainings.Api.Core.Requests.User.RegisterUser;

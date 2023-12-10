@@ -1,4 +1,5 @@
-﻿using Itis.MyTrainings.Api.Contracts.Requests.User.RegusterUser;
+﻿using System.Security.Claims;
+using Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUser;
 using Itis.MyTrainings.Api.Core.Abstractions;
 using MediatR;
 
@@ -32,7 +33,15 @@ public class RegisterUserCommandHandler
             Email = request.Email
         };
 
-        var result = await _userService.RegisterUser(user, request.Password);
+        var result = await _userService.RegisterUserAsync(user, request.Password);
+
+        var claims = new List<Claim>
+        {
+            new (ClaimTypes.Role, request.Role)
+        };
+
+        if (result.Succeeded)
+            await _userService.AddClaimsAsync(user, claims);
 
         return new RegisterUserResponse(result);
     }

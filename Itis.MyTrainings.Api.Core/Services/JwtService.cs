@@ -21,9 +21,8 @@ public class JwtService: IJwtService
         _configuration = configuration;
     }
     
-    // Todo при добавлении ролевой добавить роль пользователя в claims
     /// <inheritdoc />
-    public string GenerateJwt(Guid userId)
+    public string GenerateJwt(Guid userId, string role)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var jwtSecurityKey = Encoding.ASCII.GetBytes(
@@ -31,6 +30,7 @@ public class JwtService: IJwtService
         var claims = new List<Claim>
         {
             new(nameof(ClaimTypes.NameIdentifier), userId.ToString()),
+            new(nameof(ClaimTypes.Role), role)
         };
 
         var tokenDescriptor = new SecurityTokenDescriptor
