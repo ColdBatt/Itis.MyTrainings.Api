@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Itis.MyTrainings.Api.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ae33dfc5fbf3c5942f937eeaa0b135de4b6a93e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Itis.MyTrainings.Api.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Itis.MyTrainings.Api.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

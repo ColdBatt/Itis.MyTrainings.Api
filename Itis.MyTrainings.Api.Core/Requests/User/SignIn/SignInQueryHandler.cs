@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Itis.MyTrainings.Api.Contracts.Requests.User.SignIn;
 using Itis.MyTrainings.Api.Core.Abstractions;
 using Itis.MyTrainings.Api.Core.Exceptions;
@@ -7,7 +6,7 @@ using MediatR;
 namespace Itis.MyTrainings.Api.Core.Requests.User.SignIn;
 
 /// <summary>
-/// Обработчик запроса <see cref="Sign"/>
+/// Обработчик запроса <see cref="SignInQuery"/>
 /// </summary>
 public class SignInQueryHandler : IRequestHandler<SignInQuery, SignInResponse>
 {
@@ -41,9 +40,8 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, SignInResponse>
 
         if (result.Succeeded)
         {
-            var claims = await _userService.GetClaimsAsync(user);
-            var role = claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)!.Value;
-            token = _jwtService.GenerateJwt(user.Id, role);
+            var role = await _userService.GetRoleAsync(user);
+            token = _jwtService.GenerateJwt(user.Id, role!);
         }
 
         return new SignInResponse(result, token);

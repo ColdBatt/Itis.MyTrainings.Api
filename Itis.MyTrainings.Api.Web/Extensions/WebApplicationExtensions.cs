@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Itis.MyTrainings.Api.Web.Extensions;
 
-public static class Migrator
+public static class WebApplicationExtensions
 {
     /// <summary>
     /// Применить миграцию к бд

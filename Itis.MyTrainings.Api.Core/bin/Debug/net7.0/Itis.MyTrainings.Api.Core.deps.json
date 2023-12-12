@@ -13,7 +13,8 @@
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.12",
           "Microsoft.EntityFrameworkCore": "7.0.12",
-          "System.IdentityModel.Tokens.Jwt": "6.15.1"
+          "System.IdentityModel.Tokens.Jwt": "6.15.1",
+          "Microsoft.AspNetCore.Authorization": "7.0.0.0"
         },
         "runtime": {
           "Itis.MyTrainings.Api.Core.dll": {}
@@ -598,6 +599,22 @@
         "runtime": {
           "Itis.MyTrainings.Api.Contracts.dll": {}
         }
+      },
+      "Microsoft.AspNetCore.Authorization/7.0.0.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Authorization.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.1423.52316"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/7.0.0.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Metadata.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.1423.52316"
+          }
+        }
       }
     }
   },
@@ -994,6 +1011,16 @@
     },
     "Itis.MyTrainings.Api.Contracts/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Authorization/7.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Metadata/7.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }
