@@ -1,7 +1,7 @@
 ﻿namespace Itis.MyTrainings.Api.Core.Constants;
 
 /// <summary>
-/// Роли
+/// Роли (При добавлении новых ролей создавать миграцию)
 /// </summary>
 public static class Roles
 {
@@ -9,6 +9,11 @@ public static class Roles
     /// Администратор
     /// </summary>
     public const string Administrator = "Administrator";
+
+    /// <summary>
+    /// Тренер
+    /// </summary>
+    public const string Coach = "Coach";
 
     /// <summary>
     /// Обычный пользователь

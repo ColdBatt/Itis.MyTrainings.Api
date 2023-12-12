@@ -18,6 +18,14 @@ public interface IUserService
     public Task<IdentityResult> RegisterUserAsync(User user, string password);
 
     /// <summary>
+    /// Добавить связь пользователя с ролью
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <param name="roleName">Имя роли</param>
+    /// <returns></returns>
+    public Task<IdentityResult> AddUserRole(User user, string roleName);
+    
+    /// <summary>
     /// Добавить дополнительную информацию о пользователе
     /// </summary>
     /// <param name="user">Пользователь</param>
@@ -31,6 +39,13 @@ public interface IUserService
     /// <param name="user">Пользователь</param>
     /// <returns></returns>
     public Task<IList<Claim>> GetClaimsAsync(User user);
+
+    /// <summary>
+    /// Получить роль пользователя
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <returns></returns>
+    public Task<string?> GetRoleAsync(User user);
     
     /// <summary>
     /// Получить пользователя по Email
