@@ -8,7 +8,7 @@ namespace Itis.MyTrainings.Api.PostgreSql.Extensions;
 public static class ModelBuilderExtensions
 {
     /// <summary>
-    /// Добавление моделей при запуске
+    /// Конфигурация моделей при запуске
     /// </summary>
     /// <param name="modelBuilder">ModelBuilder</param>
     public static void Seed(this ModelBuilder modelBuilder)
@@ -17,6 +17,7 @@ public static class ModelBuilderExtensions
             RoleManager.GetRoles()
         );
 
+        // todo вынести отсюда
         modelBuilder.Entity<IdentityUserRole<Guid>>(userRole =>
         {
             userRole.HasKey(pr => new
