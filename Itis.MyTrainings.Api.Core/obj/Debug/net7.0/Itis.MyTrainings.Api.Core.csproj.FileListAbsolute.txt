@@ -14,3 +14,5 @@ C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\r
 C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\bin\Debug\net7.0\Itis.MyTrainings.Api.Contracts.dll
 C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\bin\Debug\net7.0\Itis.MyTrainings.Api.Contracts.pdb
 C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\obj\Debug\net7.0\Itis.MyTrainings.Api.Core.csproj.CopyComplete
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\bin\Debug\net7.0\Microsoft.AspNetCore.Authorization.dll
+C:\C# projects\Itis.MyTrainings.Api\Itis.MyTrainings.Api.Core\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll

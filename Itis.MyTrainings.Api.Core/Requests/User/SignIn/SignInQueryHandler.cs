@@ -6,7 +6,7 @@ using MediatR;
 namespace Itis.MyTrainings.Api.Core.Requests.User.SignIn;
 
 /// <summary>
-/// Обработчик запроса <see cref="Sign"/>
+/// Обработчик запроса <see cref="SignInQuery"/>
 /// </summary>
 public class SignInQueryHandler : IRequestHandler<SignInQuery, SignInResponse>
 {
@@ -39,7 +39,10 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, SignInResponse>
         string token = null!;
 
         if (result.Succeeded)
-            token = _jwtService.GenerateJwt(user.Id);
+        {
+            var role = await _userService.GetRoleAsync(user);
+            token = _jwtService.GenerateJwt(user.Id, role!);
+        }
 
         return new SignInResponse(result, token);
     }

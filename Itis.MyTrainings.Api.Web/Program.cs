@@ -3,6 +3,7 @@ using Itis.MyTrainings.Api.Web.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.ConfigureJwtBearer();
+builder.ConfigureAuthorization();
 builder.ConfigurePostgresqlConnection();
 builder.ConfigureCore();
 

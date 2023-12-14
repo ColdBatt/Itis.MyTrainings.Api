@@ -13,7 +13,7 @@ public class SignInResponse
     /// <param name="result">Результат входа</param>
     /// <param name="jwtToken">Jwt</param>
     public SignInResponse(
-        SignInResult result, 
+        SignInResult result,
         string jwtToken = default!)
     {
         JwtToken = jwtToken;

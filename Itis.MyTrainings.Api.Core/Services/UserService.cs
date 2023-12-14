@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Itis.MyTrainings.Api.Core.Abstractions;
 using Itis.MyTrainings.Api.Core.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -22,10 +23,29 @@ public class UserService: IUserService
         _userManager = userManager;
         _signInManager = signInManager;
     }
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> RegisterUserAsync(User user, string password)
+        => await _userManager.CreateAsync(user, password);
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> AddUserRole(User user, string roleName)
+        => await _userManager.AddToRoleAsync(user, roleName);
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> AddClaimsAsync(User user, IEnumerable<Claim> claims)
+        => await _userManager.AddClaimsAsync(user, claims);
     
     /// <inheritdoc />
-    public async Task<IdentityResult> RegisterUser(User user, string password)
-        => await _userManager.CreateAsync(user, password);
+    public async Task<IList<Claim>> GetClaimsAsync(User user)
+        => await _userManager.GetClaimsAsync(user);
+
+    /// <inheritdoc />
+    public async Task<string?> GetRoleAsync(User user)
+    {
+        var claims = await _userManager.GetClaimsAsync(user);
+        return claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value;
+    }
 
     /// <inheritdoc />
     public async Task<User?> FindUserByEmailAsync(string email)

@@ -7,5 +7,4 @@ namespace Itis.MyTrainings.Api.Core.Entities;
 /// </summary>
 public class Role: IdentityRole<Guid>
 {
-    
 }
