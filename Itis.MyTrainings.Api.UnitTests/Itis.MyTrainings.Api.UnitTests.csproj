@@ -24,6 +24,7 @@
 
     <ItemGroup>
       <Folder Include="Mocks\" />
+      <Folder Include="Requests\" />
     </ItemGroup>
 
 </Project>
