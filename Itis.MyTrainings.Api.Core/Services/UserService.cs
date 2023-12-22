@@ -54,4 +54,12 @@ public class UserService: IUserService
     /// <inheritdoc />
     public async Task<SignInResult> SignInWithPasswordAsync(User user, string password)
         => await _signInManager.PasswordSignInAsync(user, password, false, false);
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> ResetPasswordAsync(User user, string code, string newPassword)
+        => await _userManager.ResetPasswordAsync(user, code, newPassword);
+
+    /// <inheritdoc />
+    public async Task<string> GetPasswordResetTokenAsync(User user)
+        => await _userManager.GeneratePasswordResetTokenAsync(user);
 }
