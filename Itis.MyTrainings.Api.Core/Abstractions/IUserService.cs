@@ -61,4 +61,20 @@ public interface IUserService
     /// <param name="password">Пароль</param>
     /// <returns></returns>
     public Task<SignInResult> SignInWithPasswordAsync(User user, string password);
+
+    /// <summary>
+    /// Сбросить пароль
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <param name="code">Код подтверждения</param>
+    /// <param name="newPassword">Новый пароль</param>
+    /// <returns></returns>
+    public Task<IdentityResult> ResetPasswordAsync(User user, string code, string newPassword);
+
+    /// <summary>
+    /// Получить персональный токен для сброса пароля
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <returns></returns>
+    public Task<string> GetPasswordResetTokenAsync(User user);
 }

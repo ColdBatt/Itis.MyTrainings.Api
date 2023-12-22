@@ -39,7 +39,7 @@ public static class WebApplicationBuilderExtensions
     }
     
     /// <summary>
-    /// Добавить службы проекта
+    /// Добавить службы и зависимости проекта
     /// </summary>
     /// <param name="builder">WebApplicationBuilder</param>
     public static void ConfigureCore(this WebApplicationBuilder builder)
@@ -50,6 +50,7 @@ public static class WebApplicationBuilderExtensions
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IJwtService, JwtService>();
         builder.Services.AddScoped<IRoleService, RoleService>();
+        builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
         builder.Services
             .AddIdentity<User, Role>(opt =>
             {
