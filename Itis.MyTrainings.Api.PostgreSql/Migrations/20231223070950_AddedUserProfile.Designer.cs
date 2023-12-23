@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Itis.MyTrainings.Api.PostgreSql;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Itis.MyTrainings.Api.PostgreSql.Migrations
 {
     [DbContext(typeof(EfContext))]
-    partial class EfContextModelSnapshot : ModelSnapshot
+    [Migration("20231223070950_AddedUserProfile")]
+    partial class AddedUserProfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,19 +48,19 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("11f83919-addd-442b-826c-5d043c017970"),
+                            Id = new Guid("160a6354-72a4-41e7-aa7f-c27f66aa9356"),
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = new Guid("f68b0271-cbce-459b-9b01-aa58a1f1e904"),
+                            Id = new Guid("d1b7d1ab-a0c6-4f63-a752-9b4c5efdba86"),
                             Name = "Coach",
                             NormalizedName = "COACH"
                         },
                         new
                         {
-                            Id = new Guid("a9f13ee5-ccc4-477b-93f0-e9a6c314cf54"),
+                            Id = new Guid("781c5c97-0eff-40d6-836d-3e725598986a"),
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -108,9 +111,6 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
-
-                    b.Property<Guid?>("ProfileId")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
@@ -164,9 +164,6 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
 
                     b.Property<List<string>>("TrainingPreference")
                         .HasColumnType("text[]");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
 
                     b.Property<int?>("WeeklyTrainingFrequency")
                         .HasColumnType("integer");
@@ -287,7 +284,8 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
 
             modelBuilder.Entity("Itis.MyTrainings.Api.Core.Entities.UserProfile", b =>
                 {
-                    b.Navigation("User");
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

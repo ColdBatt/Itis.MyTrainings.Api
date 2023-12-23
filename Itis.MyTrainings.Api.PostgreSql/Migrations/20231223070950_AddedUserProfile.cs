@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Itis.MyTrainings.Api.PostgreSql.Migrations
 {
     /// <inheritdoc />
-    public partial class Add_User_Profile_Entity : Migration
+    public partial class AddedUserProfile : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,24 +17,23 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
             migrationBuilder.DeleteData(
                 table: "Roles",
                 keyColumn: "Id",
-                keyValue: new Guid("4e556bc3-d6b7-4be0-910f-8e7da06c27d0"));
+                keyValue: new Guid("111d964d-1ff6-4951-bf4c-947decef4c32"));
 
             migrationBuilder.DeleteData(
                 table: "Roles",
                 keyColumn: "Id",
-                keyValue: new Guid("528e5a8a-d42b-4d57-9745-2e5982c5d259"));
+                keyValue: new Guid("7c071a69-38bf-438c-a2d2-01c47c04a639"));
 
             migrationBuilder.DeleteData(
                 table: "Roles",
                 keyColumn: "Id",
-                keyValue: new Guid("92c909e1-19fd-4583-ad58-1fcacaf11bcb"));
+                keyValue: new Guid("b7877145-c75f-4bd8-9026-b80acd190277"));
 
             migrationBuilder.CreateTable(
                 name: "UserProfiles",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Gender = table.Column<string>(type: "text", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
@@ -59,41 +58,53 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("30ef6e8c-9f6a-4230-abf1-60956ad2bd59"), null, "User", "USER" },
-                    { new Guid("d76f77c2-8178-4ad4-abd1-6e88e67fc6ee"), null, "Coach", "COACH" },
-                    { new Guid("fba695d3-ff4f-4ff5-aeb2-a046d1ec4724"), null, "Administrator", "ADMINISTRATOR" }
+                    { new Guid("160a6354-72a4-41e7-aa7f-c27f66aa9356"), null, "Administrator", "ADMINISTRATOR" },
+                    { new Guid("781c5c97-0eff-40d6-836d-3e725598986a"), null, "User", "USER" },
+                    { new Guid("d1b7d1ab-a0c6-4f63-a752-9b4c5efdba86"), null, "Coach", "COACH" }
                 });
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Users_UserProfiles_Id",
+                table: "Users",
+                column: "Id",
+                principalTable: "UserProfiles",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Users_UserProfiles_Id",
+                table: "Users");
+
             migrationBuilder.DropTable(
                 name: "UserProfiles");
 
             migrationBuilder.DeleteData(
                 table: "Roles",
                 keyColumn: "Id",
-                keyValue: new Guid("30ef6e8c-9f6a-4230-abf1-60956ad2bd59"));
+                keyValue: new Guid("160a6354-72a4-41e7-aa7f-c27f66aa9356"));
 
             migrationBuilder.DeleteData(
                 table: "Roles",
                 keyColumn: "Id",
-                keyValue: new Guid("d76f77c2-8178-4ad4-abd1-6e88e67fc6ee"));
+                keyValue: new Guid("781c5c97-0eff-40d6-836d-3e725598986a"));
 
             migrationBuilder.DeleteData(
                 table: "Roles",
                 keyColumn: "Id",
-                keyValue: new Guid("fba695d3-ff4f-4ff5-aeb2-a046d1ec4724"));
+                keyValue: new Guid("d1b7d1ab-a0c6-4f63-a752-9b4c5efdba86"));
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("4e556bc3-d6b7-4be0-910f-8e7da06c27d0"), null, "Coach", "COACH" },
-                    { new Guid("528e5a8a-d42b-4d57-9745-2e5982c5d259"), null, "Administrator", "ADMINISTRATOR" },
-                    { new Guid("92c909e1-19fd-4583-ad58-1fcacaf11bcb"), null, "User", "USER" }
+                    { new Guid("111d964d-1ff6-4951-bf4c-947decef4c32"), null, "Coach", "COACH" },
+                    { new Guid("7c071a69-38bf-438c-a2d2-01c47c04a639"), null, "Administrator", "ADMINISTRATOR" },
+                    { new Guid("b7877145-c75f-4bd8-9026-b80acd190277"), null, "User", "USER" }
                 });
         }
     }

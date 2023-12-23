@@ -28,17 +28,11 @@ public class EfContext: IdentityDbContext<User, Role, Guid>, IDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Seed();
-        // modelBuilder.Entity<UserProfile>()
-        //     .HasOne(x => x.User)
-        //     .WithOne(x => x.UserProfile)
-        //     .HasForeignKey<UserProfile>(x => x.UserId)
-        //     .HasPrincipalKey<UserProfile>(x => x.Id);
-        
-        // modelBuilder.Entity<User>()
-        //     .HasOne(x => x.UserProfile)
-        //     .WithOne(x => x.User)
-        //     .HasForeignKey<User>(x => x.UserProfileId)
-        //     .HasPrincipalKey<User>(x => x.Id);
+
+        modelBuilder.Entity<User>()
+            .HasOne(x => x.Profile)
+            .WithOne(x => x.User)
+            .HasForeignKey<User>(x => x.Id);
     }
     
     /// <inheritdoc />
