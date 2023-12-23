@@ -15,18 +15,22 @@ public class RegisterUserCommandHandler
 {
     private readonly IUserService _userService;
     private readonly IRoleService _roleService;
+    private readonly IDbContext _dbContext;
 
     /// <summary>
     /// Конструктор
     /// </summary>
     /// <param name="userService">Сервис для работы с пользователем</param>
     /// <param name="roleService">Сервис для работы с ролями</param>
+    /// <param name="dbContext">Контекст бд</param>
     public RegisterUserCommandHandler(
         IUserService userService,
-        IRoleService roleService)
+        IRoleService roleService,
+        IDbContext dbContext)
     {
         _userService = userService;
         _roleService = roleService;
+        _dbContext = dbContext;
     }
 
     /// <inheritdoc />

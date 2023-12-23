@@ -1,10 +1,13 @@
 ﻿using Itis.MyTrainings.Api.Contracts.Requests.User.GetResetPasswordCode;
 using Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUser;
+using Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUserWithVk;
 using Itis.MyTrainings.Api.Contracts.Requests.User.ResetPassword;
 using Itis.MyTrainings.Api.Contracts.Requests.User.SignIn;
+using Itis.MyTrainings.Api.Core.Abstractions;
 using Itis.MyTrainings.Api.Core.Entities;
 using Itis.MyTrainings.Api.Core.Requests.User.GetResetPasswordCode;
 using Itis.MyTrainings.Api.Core.Requests.User.RegisterUser;
+using Itis.MyTrainings.Api.Core.Requests.User.RegisterUserWithVk;
 using Itis.MyTrainings.Api.Core.Requests.User.ResetPassword;
 using Itis.MyTrainings.Api.Core.Requests.User.SignIn;
 using MediatR;
@@ -21,10 +24,19 @@ namespace Itis.MyTrainings.Api.Web.Controllers;
 public class UserController: Controller
 {
     private readonly UserManager<User> _userManager;
+    private readonly IVkService _vkService;
 
-    public UserController(UserManager<User> userManager)
+    /// <summary>
+    /// Конструктор
+    /// </summary>
+    /// <param name="userManager">Менеджер пользователя</param>
+    /// <param name="vkService">Сервис для работы с ВКонтакте</param>
+    public UserController(
+        UserManager<User> userManager,
+        IVkService vkService)
     {
         _userManager = userManager;
+        _vkService = vkService;
     }
     
     /// <summary>
@@ -100,4 +112,26 @@ public class UserController: Controller
             Code = request.Code,
         },
         cancellationToken);
+
+    /// <summary>
+    /// Авторизировать пользователя через вконтакте
+    /// </summary>
+    /// <returns>Редирект на форму авторизации</returns>
+    [HttpGet("authorizeVk")]
+    public async Task<RedirectResult> VkAuthorize() 
+        => Redirect(
+            "https://oauth.vk.com/authorize?client_id=51816062&display=page&response_type=code&v=5.131&redirect_uri=https://localhost/after-auth");
+    
+    
+    /// <summary>
+    /// Авторизировать пользователя с помощью Вконтакте
+    /// </summary>
+    /// <returns></returns>
+    [HttpPost("registerWithVk/{code}")]
+    public async Task<RegisterUserWithVkResponse> RegisterUserWithVk(
+        [FromServices] IMediator mediator,
+        [FromRoute] string code,
+        CancellationToken cancellationToken) =>
+        await mediator.Send(new RegisterUserWithVkCommand(code),
+            cancellationToken);
 }

@@ -18,6 +18,20 @@ public interface IUserService
     public Task<IdentityResult> RegisterUserAsync(User user, string password);
 
     /// <summary>
+    /// Зарегестрировать пользователя
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <returns></returns>
+    public Task<IdentityResult> RegisterUserAsync(User user);
+
+    /// <summary>
+    /// Найти пользователя по id
+    /// </summary>
+    /// <param name="guid"></param>
+    /// <returns></returns>
+    public Task<User?> FindUserByIdAsync(Guid guid);
+
+    /// <summary>
     /// Добавить связь пользователя с ролью
     /// </summary>
     /// <param name="user">Пользователь</param>
