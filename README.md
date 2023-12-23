@@ -3,7 +3,7 @@
 ## Интегрированные технологии
 
 - [ASP.NET Core](https://docs.microsoft.com/ru-ru/aspnet/core/?view=aspnetcore-5.0)
-- .NET 5
+- .NET 7
 - [EF Core](https://docs.microsoft.com/ru-ru/ef/core/) + Migrations - ORM
 - [Mediatr](https://github.com/jbogard/MediatR) - SQRS mediator library
 - [xUnit](https://xunit.net/) unit & functional testing
