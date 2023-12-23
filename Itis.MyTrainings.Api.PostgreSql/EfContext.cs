@@ -28,5 +28,17 @@ public class EfContext: IdentityDbContext<User, Role, Guid>, IDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Seed();
+
+        modelBuilder.Entity<User>()
+            .HasOne(x => x.Profile)
+            .WithOne(x => x.User)
+            .HasForeignKey<User>(x => x.Id);
     }
+    
+    /// <inheritdoc />
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
+        await SaveChangesAsync(true, cancellationToken);
+
+    /// <inheritdoc />
+    public DbSet<UserProfile> UserProfiles { get; set; }
 }

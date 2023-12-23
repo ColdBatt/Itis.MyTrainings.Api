@@ -45,12 +45,13 @@ public static class WebApplicationBuilderExtensions
     public static void ConfigureCore(this WebApplicationBuilder builder)
     {
         builder.Services.AddMediatR(typeof(User));
-
         builder.Services.AddScoped<IDbContext, EfContext>();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IJwtService, JwtService>();
         builder.Services.AddScoped<IRoleService, RoleService>();
         builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
+        builder.Services.AddScoped<IVkService, VkService>();
+        builder.Services.AddSingleton<IHttpHelperService, HttpHelperService>();
         builder.Services
             .AddIdentity<User, Role>(opt =>
             {

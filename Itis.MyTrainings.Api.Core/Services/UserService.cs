@@ -23,10 +23,17 @@ public class UserService: IUserService
         _userManager = userManager;
         _signInManager = signInManager;
     }
+    
+    /// <inheritdoc />
+    public async Task<User?> FindUserByIdAsync(Guid guid)
+        => await _userManager.FindByIdAsync(guid.ToString());
 
     /// <inheritdoc />
     public async Task<IdentityResult> RegisterUserAsync(User user, string password)
         => await _userManager.CreateAsync(user, password);
+
+    public async Task<IdentityResult> RegisterUserAsync(User user)
+        => await _userManager.CreateAsync(user);
 
     /// <inheritdoc />
     public async Task<IdentityResult> AddUserRole(User user, string roleName)
