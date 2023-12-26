@@ -47,9 +47,9 @@ public static class WebApplicationBuilderExtensions
         builder.Services.AddMediatR(typeof(User));
         builder.Services.AddScoped<IDbContext, EfContext>();
         builder.Services.AddScoped<IUserService, UserService>();
-        builder.Services.AddScoped<IJwtService, JwtService>();
+        builder.Services.AddSingleton<IJwtService, JwtService>();
         builder.Services.AddScoped<IRoleService, RoleService>();
-        builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
+        builder.Services.AddSingleton<IEmailSenderService, EmailSenderService>();
         builder.Services.AddScoped<IVkService, VkService>();
         builder.Services.AddSingleton<IHttpHelperService, HttpHelperService>();
         builder.Services
@@ -62,7 +62,8 @@ public static class WebApplicationBuilderExtensions
             })
             .AddEntityFrameworkStores<EfContext>()
             .AddDefaultTokenProviders();
-
+        builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+            options.TokenLifespan = TimeSpan.FromMinutes(5));
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddCustomSwagger();

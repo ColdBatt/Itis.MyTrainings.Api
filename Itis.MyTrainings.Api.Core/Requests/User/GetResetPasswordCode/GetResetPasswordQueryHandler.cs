@@ -1,4 +1,5 @@
-﻿using Itis.MyTrainings.Api.Contracts.Requests.User.GetResetPasswordCode;
+﻿using System.Net.Mail;
+using Itis.MyTrainings.Api.Contracts.Requests.User.GetResetPasswordCode;
 using Itis.MyTrainings.Api.Core.Abstractions;
 using Itis.MyTrainings.Api.Core.Constants;
 using Itis.MyTrainings.Api.Core.Exceptions;
@@ -8,10 +9,10 @@ using MediatR;
 namespace Itis.MyTrainings.Api.Core.Requests.User.GetResetPasswordCode;
 
 /// <summary>
-/// Обработчик запроса <see cref="GetResetPasswordQuery"/>
+/// Обработчик запроса <see cref="SendResetPasswordQuery"/>
 /// </summary>
 public class GetResetPasswordQueryHandler:
-    IRequestHandler<GetResetPasswordQuery, GetResetPasswordCodeResponse>
+    IRequestHandler<SendResetPasswordQuery, SendResetPasswordCodeResponse>
 {
     private IUserService _userService;
     private IEmailSenderService _emailSenderService;
@@ -30,23 +31,40 @@ public class GetResetPasswordQueryHandler:
     }
     
     /// <inheritdoc />
-    public async Task<GetResetPasswordCodeResponse> Handle(GetResetPasswordQuery request, CancellationToken cancellationToken)
+    public async Task<SendResetPasswordCodeResponse> Handle(SendResetPasswordQuery request, CancellationToken cancellationToken)
     {
         var user = await _userService.FindUserByEmailAsync(request.Email)
             ?? throw new EntityNotFoundException<Entities.User>($"Не найдены пользователи со следующим email: {request.Email}");
 
         var token = await _userService.GetPasswordResetTokenAsync(user);
 
-        var body = HtmlFileManager.GetHtmlFileBody(TemplatePaths.TemplatePath, TemplatePaths.ResetPasswordTemplate);
-        var subject = HtmlFileManager.GetTitle(body);
+        var body = HtmlFileManager.GetHtmlFileBody(
+            TemplatePaths.TemplatePath, 
+            TemplatePaths.ResetPasswordTemplate); 
+        
+        var subject = EmailMessageSubjects.ResetPassword;
         
         var placeholders = new Dictionary<string, string>()
         {
             { "{code}", token },
         };
-        
-        await _emailSenderService.SendMessageAsync(subject, body, request.Email, placeholders);
 
-        return new GetResetPasswordCodeResponse();
+        string result;
+        try
+        {
+            await _emailSenderService.SendMessageAsync(subject, body, request.Email, placeholders, cancellationToken);
+            result = "Сообщение отправлено";
+        }
+        catch (SmtpFailedRecipientsException e)
+        {
+            result = e.Message;
+        }
+        catch (ArgumentNullException e)
+        {
+            Console.WriteLine("Сообщение не может быть пустым");
+            throw;
+        }
+
+        return new SendResetPasswordCodeResponse(result);
     }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Itis.MyTrainings.Api.Contracts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27b93e22d0fc6cdb3707bda429f4831ab89b2fb8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed2fa6c41ab53ce6d064cc38f7f4e963157b9178")]
 [assembly: System.Reflection.AssemblyProductAttribute("Itis.MyTrainings.Api.Contracts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Itis.MyTrainings.Api.Contracts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4,8 +4,8 @@ using MediatR;
 namespace Itis.MyTrainings.Api.Core.Requests.User.GetResetPasswordCode;
 
 /// <summary>
-/// Команда запроса <see cref="GetResetPasswordCodeRequest"/>
+/// Команда запроса <see cref="SendResetPasswordCodeRequest"/>
 /// </summary>
-public class GetResetPasswordQuery: GetResetPasswordCodeRequest, IRequest<GetResetPasswordCodeResponse>
+public class SendResetPasswordQuery: SendResetPasswordCodeRequest, IRequest<SendResetPasswordCodeResponse>
 {
 }

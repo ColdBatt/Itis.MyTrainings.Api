@@ -18,6 +18,9 @@ public class VkService : IVkService
     private IHttpHelperService _httpHelperService;
     private readonly IConfiguration _configuration;
     
+        /// <summary>
+        /// TODO Переписать на модельку
+        /// </summary>
     private string? VkAuthorizationUri { get; set; }
     private string? VkApiUri { get; set; }
     private string? RedirectUri { get; set; }
@@ -64,6 +67,7 @@ public class VkService : IVkService
     /// <inheritdoc />
     public async Task GetAccessTokenAsync(string code, CancellationToken cancellationToken)
     {
+        //TODO в try catch
         var response = await _httpHelperService.GetAsync(
             $"{VkAuthorizationUri}access_token?client_id={AppId}&client_secret={ServiceKey}&redirect_uri={RedirectUri}&code={code}",
             cancellationToken);
@@ -71,6 +75,7 @@ public class VkService : IVkService
         if (!response.IsSuccessStatusCode)
             throw new HttpRequestException("Не получилось достучаться до Вк");
         
+        //TODO в try catch
        var model = await JsonSerializer.DeserializeAsync<AccessTokenResponse>(
            await response.Content.ReadAsStreamAsync());
 
@@ -80,7 +85,8 @@ public class VkService : IVkService
        AccessToken = model.AccessToken;
     }
     
-    /// <inheritdoc />
+    /// <inheritdoc /> // TODO: вынести в appsettings.json
     public string GetRedirectToAuthorizationUrl() => 
-        $"{VkAuthorizationUri}authorize?client_id={AppId}&scope={Scope}&response_type={ResponseType}&v={Version}&redirect_uri={RedirectUri}";
+        $"{VkAuthorizationUri}authorize?client_id={AppId}&scope={Scope}&response_type={ResponseType}" +
+        $"&v={Version}&redirect_uri={RedirectUri}";
 }

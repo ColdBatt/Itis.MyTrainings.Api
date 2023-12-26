@@ -6,7 +6,6 @@ namespace Itis.MyTrainings.Api.Web.Configurators;
 
 public static class AuthorizationConfigurator
 {
-    // TODO Переделать покрасивше (обобщить добавление роли)
     /// <summary>
     /// Добавить и настроить роли
     /// </summary>

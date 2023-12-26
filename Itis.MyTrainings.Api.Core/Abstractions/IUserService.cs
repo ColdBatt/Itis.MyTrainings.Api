@@ -37,7 +37,7 @@ public interface IUserService
     /// <param name="user">Пользователь</param>
     /// <param name="roleName">Имя роли</param>
     /// <returns></returns>
-    public Task<IdentityResult> AddUserRole(User user, string roleName);
+    public Task<IdentityResult> AddUserRoleAsync(User user, string roleName);
     
     /// <summary>
     /// Добавить дополнительную информацию о пользователе
@@ -83,7 +83,7 @@ public interface IUserService
     /// <param name="code">Код подтверждения</param>
     /// <param name="newPassword">Новый пароль</param>
     /// <returns></returns>
-    public Task<IdentityResult> ResetPasswordAsync(User user, string code, string newPassword);
+    public Task<IdentityResult> SetPasswordWithEmailAsync(User user, string code, string newPassword);
 
     /// <summary>
     /// Получить персональный токен для сброса пароля

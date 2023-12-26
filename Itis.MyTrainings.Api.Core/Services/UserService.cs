@@ -32,11 +32,12 @@ public class UserService: IUserService
     public async Task<IdentityResult> RegisterUserAsync(User user, string password)
         => await _userManager.CreateAsync(user, password);
 
+    /// <inheritdoc />
     public async Task<IdentityResult> RegisterUserAsync(User user)
         => await _userManager.CreateAsync(user);
 
     /// <inheritdoc />
-    public async Task<IdentityResult> AddUserRole(User user, string roleName)
+    public async Task<IdentityResult> AddUserRoleAsync(User user, string roleName)
         => await _userManager.AddToRoleAsync(user, roleName);
 
     /// <inheritdoc />
@@ -63,10 +64,16 @@ public class UserService: IUserService
         => await _signInManager.PasswordSignInAsync(user, password, false, false);
 
     /// <inheritdoc />
-    public async Task<IdentityResult> ResetPasswordAsync(User user, string code, string newPassword)
+    public async Task<IdentityResult> SetPasswordWithEmailAsync(User user, string code, string newPassword)
         => await _userManager.ResetPasswordAsync(user, code, newPassword);
 
     /// <inheritdoc />
     public async Task<string> GetPasswordResetTokenAsync(User user)
-        => await _userManager.GeneratePasswordResetTokenAsync(user);
+    {
+        await _userManager.UpdateSecurityStampAsync(user);
+        
+        var result = await _userManager.GeneratePasswordResetTokenAsync(user);
+        
+        return result;
+    }
 }

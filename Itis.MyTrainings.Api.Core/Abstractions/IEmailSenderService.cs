@@ -12,5 +12,5 @@ public interface IEmailSenderService
     /// <param name="body">Тело сообщения</param>
     /// <param name="sendTo">Получатель</param>
     /// <returns>-</returns>
-    public Task SendMessageAsync(string? subject, string body, string sendTo, Dictionary<string, string>? placeholders);
+    public Task SendMessageAsync(string? subject, string body, string sendTo, Dictionary<string, string>? placeholders, CancellationToken cancellationToken);
 }

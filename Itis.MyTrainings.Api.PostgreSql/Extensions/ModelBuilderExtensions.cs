@@ -17,7 +17,6 @@ public static class ModelBuilderExtensions
             RoleManager.GetRoles()
         );
 
-        // todo вынести отсюда
         modelBuilder.Entity<IdentityUserRole<Guid>>(userRole =>
         {
             userRole.HasKey(pr => new

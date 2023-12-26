@@ -7,31 +7,11 @@ namespace Itis.MyTrainings.Api.Core.Entities;
 /// </summary>
 public class UserProfile : EntityBase
 {
-    private User? _user;
-    
     /// <summary>
     /// Конструктор
     /// </summary>
     public UserProfile()
     {
-    }
-
-    /// <summary>
-    /// Идентификатор пользователя
-    /// </summary>
-    public Guid? UserId { get; private set; }
-    
-    /// <summary>
-    /// Пользователь
-    /// </summary>
-    public User? User 
-    {
-        get => _user;
-        set
-        {
-            _user = value;
-            UserId = _user?.Id;
-        }
     }
     
     /// <summary>

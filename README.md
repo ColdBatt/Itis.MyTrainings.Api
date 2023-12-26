@@ -10,7 +10,7 @@
 
 ## Структура проекта
 
-Решение разбит на две группы проектов: src (исполняемый код) и test (модульные и интеграционные тесты). Решение побито на проекты в соответствии с [onion architecture pattern](https://www.codeguru.com/csharp/csharp/cs_misc/designtechniques/understanding-onion-architecture.html).
+Решение разбито на две группы проектов: src (исполняемый код) и test (модульные и интеграционные тесты). Решение побито на проекты в соответствии с [onion architecture pattern](https://www.codeguru.com/csharp/csharp/cs_misc/designtechniques/understanding-onion-architecture.html).
 
 ### Itis.MyTrainings.Api.Contracts
 

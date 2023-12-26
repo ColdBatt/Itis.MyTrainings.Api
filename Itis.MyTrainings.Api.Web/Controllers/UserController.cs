@@ -4,14 +4,12 @@ using Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUserWithVk;
 using Itis.MyTrainings.Api.Contracts.Requests.User.ResetPassword;
 using Itis.MyTrainings.Api.Contracts.Requests.User.SignIn;
 using Itis.MyTrainings.Api.Core.Abstractions;
-using Itis.MyTrainings.Api.Core.Entities;
 using Itis.MyTrainings.Api.Core.Requests.User.GetResetPasswordCode;
 using Itis.MyTrainings.Api.Core.Requests.User.RegisterUser;
 using Itis.MyTrainings.Api.Core.Requests.User.RegisterUserWithVk;
 using Itis.MyTrainings.Api.Core.Requests.User.ResetPassword;
 using Itis.MyTrainings.Api.Core.Requests.User.SignIn;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Itis.MyTrainings.Api.Web.Controllers;
@@ -23,95 +21,134 @@ namespace Itis.MyTrainings.Api.Web.Controllers;
 [Route("api/[controller]")]
 public class UserController: Controller
 {
-    private readonly UserManager<User> _userManager;
     private readonly IVkService _vkService;
 
     /// <summary>
     /// Конструктор
     /// </summary>
-    /// <param name="userManager">Менеджер пользователя</param>
     /// <param name="vkService">Сервис для работы с ВКонтакте</param>
     public UserController(
-        UserManager<User> userManager,
         IVkService vkService)
     {
-        _userManager = userManager;
         _vkService = vkService;
     }
-    
+
     /// <summary>
     /// Зарегестрировать пользователя
     /// </summary>
     /// <returns></returns>
     [HttpPost("register")]
-    public async Task<RegisterUserResponse> RegisterUser(
+    public async Task<ActionResult> RegisterUser(
         [FromServices] IMediator mediator,
-        [FromBody] RegisterUserRequest request,
-        CancellationToken cancellationToken) =>
-        await mediator.Send(new RegisterUserCommand()
+        [FromBody] RegisterUserRequest request)
+    {
+        RegisterUserResponse result;
+        try
         {
-            UserName = request.UserName,
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            Role = request.Role,
-            Email = request.Email,
-            Password = request.Password,
-        },
-        cancellationToken);
+            result = await mediator.Send(new RegisterUserCommand()
+            {
+                UserName = request.UserName,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Role = request.Role,
+                Email = request.Email,
+                Password = request.Password,
+            });
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+        return Ok(result.Result);
+    }
+        
     
     /// <summary>
     /// Авторизоваться
     /// </summary>
     /// <returns></returns>
     [HttpPost("signIn")]
-    public async Task<SignInResponse> SignIn(
+    public async Task<ActionResult> SignIn(
         [FromServices] IMediator mediator,
-        [FromBody] SignInRequest request,
-        CancellationToken cancellationToken) =>
-        await mediator.Send(new SignInQuery
+        [FromBody] SignInRequest request)
+    {
+        SignInResponse result;
+        try
         {
-            Email = request.Email,
-            Password = request.Password,
-        },
-        cancellationToken);
+            result = await mediator.Send(new SignInQuery
+            {
+                Email = request.Email,
+                Password = request.Password,
+            });
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+        return Ok(result.Result);
+    }
 
     /// <summary>
-    /// Получить код восстановления пароля
+    /// Отправить код восстановления пароля
     /// </summary>
-    /// <param name="mediator"></param>
-    /// <param name="request"></param>
-    /// <param name="cancellationToken"></param>
+    /// <param name="mediator">IMediator</param>
+    /// <param name="request">Запрос</param>
+    /// <param name="cancellationToken">CancellationToken</param>
     /// <returns></returns>
-    [HttpPost("getResetPasswordCode")]
-    public async Task<GetResetPasswordCodeResponse> GetResetPasswordCode(
+    [HttpPost("sendResetPasswordCode")]
+    public async Task<ActionResult> SendResetPasswordCode(
         [FromServices] IMediator mediator,
-        [FromBody] GetResetPasswordCodeRequest request,
-        CancellationToken cancellationToken) =>
-        await mediator.Send(new GetResetPasswordQuery
+        [FromBody] SendResetPasswordCodeRequest request,
+        CancellationToken cancellationToken)
+    {
+        SendResetPasswordCodeResponse result;
+        try
         {
-            Email = request.Email
-        },
-        cancellationToken);
-    
+            result = await mediator.Send(new SendResetPasswordQuery
+            {
+                Email = request.Email
+            }, cancellationToken);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+        return Ok(result.Result);
+    }
+
+
     /// <summary>
     /// Сбросить пароль
     /// </summary>
     /// <param name="mediator"></param>
     /// <param name="request"></param>
-    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost("resetPassword")]
-    public async Task<ResetPasswordResponse> ResetPassword(
+    public async Task<ActionResult> ResetPassword(
         [FromServices] IMediator mediator,
-        [FromBody] ResetPasswordRequest request,
-        CancellationToken cancellationToken) =>
-        await mediator.Send(new ResetPasswordCommand
+        [FromBody] ResetPasswordRequest request)
+    {
+        ResetPasswordResponse result;
+        try
         {
-            Email = request.Email,
-            Password = request.Password,
-            Code = request.Code,
-        },
-        cancellationToken);
+            result = await mediator.Send(new ResetPasswordCommand
+            {
+                Email = request.Email,
+                Password = request.Password,
+                Code = request.Code,
+            });
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
+        return Ok(result.Result);
+    }
+        
 
     /// <summary>
     /// Авторизировать пользователя через вконтакте
@@ -119,19 +156,15 @@ public class UserController: Controller
     /// <returns>Редирект на форму авторизации</returns>
     [HttpGet("authorizeVk")]
     public async Task<RedirectResult> VkAuthorize() 
-        => Redirect(
-            "https://oauth.vk.com/authorize?client_id=51816062&display=page&response_type=code&v=5.131&redirect_uri=https://localhost/after-auth");
-    
+        => Redirect(_vkService.GetRedirectToAuthorizationUrl());
     
     /// <summary>
     /// Авторизировать пользователя с помощью Вконтакте
     /// </summary>
     /// <returns></returns>
-    [HttpPost("registerWithVk/{code}")]
+    [HttpGet("registerWithVk")]
     public async Task<RegisterUserWithVkResponse> RegisterUserWithVk(
         [FromServices] IMediator mediator,
-        [FromRoute] string code,
-        CancellationToken cancellationToken) =>
-        await mediator.Send(new RegisterUserWithVkCommand(code),
-            cancellationToken);
+        [FromQuery] string code) =>
+        await mediator.Send(new RegisterUserWithVkCommand(code));
 }

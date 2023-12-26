@@ -7,13 +7,17 @@ using Microsoft.EntityFrameworkCore;
 namespace Itis.MyTrainings.Api.Core.Requests.UserProfile.GetUserProfileById;
 
 /// <summary>
-/// Обратчик запроса на получение профиля пользователя
+/// Обработчик запроса на получение профиля пользователя
 /// </summary>
 public class GetUserProfileByIdQueryHandler 
 : IRequestHandler<GetUserProfileByIdQuery, GetUserProfileByIdResponse>
 {
     private readonly IDbContext _dbContext;
 
+    /// <summary>
+    /// Конструктор
+    /// </summary>
+    /// <param name="dbContext"></param>
     public GetUserProfileByIdQueryHandler(IDbContext dbContext)
     {
         _dbContext = dbContext;
@@ -26,10 +30,9 @@ public class GetUserProfileByIdQueryHandler
     {
         var entity = await _dbContext.UserProfiles
             .FirstOrDefaultAsync(x => x.Id == request.Id, 
-                cancellationToken);
+                cancellationToken)
+            ?? throw new EntityNotFoundException<Entities.UserProfile>(request.Id);
         
-        ArgumentNullException.ThrowIfNull(entity);
-
         var response = new GetUserProfileByIdResponse()
         {
             Email = entity.Email,
