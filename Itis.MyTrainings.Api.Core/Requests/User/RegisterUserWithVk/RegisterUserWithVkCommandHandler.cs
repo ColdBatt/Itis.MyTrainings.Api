@@ -43,7 +43,7 @@ public class RegisterUserWithVkCommandHandler : IRequestHandler<RegisterUserWith
 
         var findedUser = await _userService.FindUserByEmailAsync(user.Email!);
         if (findedUser != null)
-            return new RegisterUserWithVkResponse(IdentityResult.Success, _jwtService.GenerateJwt(findedUser.Id, Roles.User));
+            return new RegisterUserWithVkResponse(IdentityResult.Success, _jwtService.GenerateJwt(findedUser.Id, Roles.User, findedUser.Email));
         //TODO try catch
         var result = await _userService.RegisterUserAsync(user);
 
@@ -58,7 +58,7 @@ public class RegisterUserWithVkCommandHandler : IRequestHandler<RegisterUserWith
         if (result.Succeeded)
             await _userService.AddClaimsAsync(user, claims);
 
-        return new RegisterUserWithVkResponse(result, _jwtService.GenerateJwt(user.Id, Roles.User));
+        return new RegisterUserWithVkResponse(result, _jwtService.GenerateJwt(user.Id, Roles.User, user.Email));
     }
 
     private async Task<Entities.User> GetUserFromVkAsync(string code, CancellationToken cancellationToken)
