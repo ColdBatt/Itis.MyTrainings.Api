@@ -44,5 +44,7 @@ public class EmailSenderService: IEmailSenderService
             EnableSsl = true,
             UseDefaultCredentials = false,
         };
+        
+        await smtp.SendMailAsync(message, cancellationToken);
     }
 }

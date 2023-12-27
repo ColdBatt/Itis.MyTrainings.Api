@@ -91,4 +91,12 @@ public interface IUserService
     /// <param name="user">Пользователь</param>
     /// <returns></returns>
     public Task<string> GetPasswordResetTokenAsync(User user);
+
+    /// <summary>
+    /// Получить профиль пользователя по id
+    /// </summary>
+    /// <param name="userProfileId">Идентификатор профиля пользователя</param>
+    /// <param name="cancellationToken">CancellationToken</param>
+    /// <returns></returns>
+    public Task<UserProfile?> FindUserProfileById(Guid? userProfileId, CancellationToken cancellationToken);
 }

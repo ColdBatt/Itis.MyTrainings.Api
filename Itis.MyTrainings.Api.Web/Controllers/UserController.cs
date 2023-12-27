@@ -1,15 +1,19 @@
-﻿using Itis.MyTrainings.Api.Contracts.Requests.User.GetResetPasswordCode;
+﻿using System.Security.Claims;
+using Itis.MyTrainings.Api.Contracts.Requests.User.GetCurrentUserInfo;
+using Itis.MyTrainings.Api.Contracts.Requests.User.GetResetPasswordCode;
 using Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUser;
 using Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUserWithVk;
 using Itis.MyTrainings.Api.Contracts.Requests.User.ResetPassword;
 using Itis.MyTrainings.Api.Contracts.Requests.User.SignIn;
 using Itis.MyTrainings.Api.Core.Abstractions;
+using Itis.MyTrainings.Api.Core.Requests.User.GetCurrentUserInfo;
 using Itis.MyTrainings.Api.Core.Requests.User.GetResetPasswordCode;
 using Itis.MyTrainings.Api.Core.Requests.User.RegisterUser;
 using Itis.MyTrainings.Api.Core.Requests.User.RegisterUserWithVk;
 using Itis.MyTrainings.Api.Core.Requests.User.ResetPassword;
 using Itis.MyTrainings.Api.Core.Requests.User.SignIn;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Itis.MyTrainings.Api.Web.Controllers;
@@ -60,7 +64,7 @@ public class UserController: Controller
             return BadRequest(e.Message);
         }
 
-        return Ok(result.Result);
+        return Ok(result);
     }
         
     
@@ -87,7 +91,7 @@ public class UserController: Controller
             return BadRequest(e.Message);
         }
 
-        return Ok(result.Result);
+        return Ok(result);
     }
 
     /// <summary>
@@ -116,7 +120,7 @@ public class UserController: Controller
             return BadRequest(e.Message);
         }
 
-        return Ok(result.Result);
+        return Ok(result);
     }
 
 
@@ -146,9 +150,29 @@ public class UserController: Controller
             return BadRequest(e.Message);
         }
 
-        return Ok(result.Result);
+        return Ok(result);
     }
+
+    [Authorize]
+    [HttpGet("getCurrentUserInfo")]
+    public async Task<ActionResult> GetCurrentUserInfo(
+        [FromServices] IMediator mediator)
+    {
+        ClaimsPrincipal currentUser = User;
+        var currentUserId = Guid.Parse(currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+        GetCurrentUserInfoResponse result;
+        try
+        {
+            result = await mediator.Send(new GetCurrentUserInfoQuery(currentUserId));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
         
+        return Ok(result);
+    }
 
     /// <summary>
     /// Авторизировать пользователя через вконтакте

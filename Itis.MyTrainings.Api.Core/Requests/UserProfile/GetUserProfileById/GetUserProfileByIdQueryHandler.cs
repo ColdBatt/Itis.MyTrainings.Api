@@ -35,7 +35,6 @@ public class GetUserProfileByIdQueryHandler
         
         var response = new GetUserProfileByIdResponse()
         {
-            Email = entity.Email,
             Gender = entity.Gender,
             Height = entity.Height,
             DietaryPreferences = entity.DietaryPreferences,

@@ -1,16 +1,31 @@
-﻿namespace Itis.MyTrainings.Api.Core.Entities;
+﻿using Itis.MyTrainings.Api.Contracts.Requests.User.GetResetPasswordCode;
+
+namespace Itis.MyTrainings.Api.Contracts.Requests.User.GetCurrentUserInfo;
 
 /// <summary>
-/// Профиль пользователя
+/// Ответ на запрос <see cref="SendResetPasswordCodeRequest"/>
 /// </summary>
-public class UserProfile : EntityBase
+public class GetCurrentUserInfoResponse
 {
     /// <summary>
-    /// Конструктор
+    /// Идентификатор пользователя
     /// </summary>
-    public UserProfile()
-    {
-    }
+    public Guid UserId { get; set; }
+
+    /// <summary>
+    /// Идентификатор профиля пользователя
+    /// </summary>
+    public Guid? UserProfileId { get; set; }
+    
+    /// <summary>
+    /// Имя пользователя
+    /// </summary>
+    public string FirstName { get; set; } = default!;
+        
+    /// <summary>
+    /// Фамилия пользователя
+    /// </summary>
+    public string LastName { get; set; } = default!;
     
     /// <summary>
     /// Пол
