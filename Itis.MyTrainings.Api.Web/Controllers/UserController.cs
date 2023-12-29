@@ -131,7 +131,7 @@ public class UserController: Controller
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPost("resetPassword")]
-    public async Task<ActionResult> ResetPassword(
+    public async Task<ActionResult> ResetPasswordByEmail(
         [FromServices] IMediator mediator,
         [FromBody] ResetPasswordRequest request)
     {
@@ -153,18 +153,26 @@ public class UserController: Controller
         return Ok(result);
     }
 
+    /// <summary>
+    /// Получить информацию о текущем пользователе
+    /// </summary>
+    /// <param name="mediator"></param>
+    /// <returns></returns>
     [Authorize]
     [HttpGet("getCurrentUserInfo")]
     public async Task<ActionResult> GetCurrentUserInfo(
         [FromServices] IMediator mediator)
     {
-        ClaimsPrincipal currentUser = User;
-        var currentUserId = Guid.Parse(currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+        var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier);
+        if (currentUserId == null)
+            return BadRequest("Идентификатор пользователя не найден");
+        
+        var currentUserGuid = Guid.Parse(currentUserId.Value);
 
         GetCurrentUserInfoResponse result;
         try
         {
-            result = await mediator.Send(new GetCurrentUserInfoQuery(currentUserId));
+            result = await mediator.Send(new GetCurrentUserInfoQuery(currentUserGuid));
         }
         catch (Exception e)
         {
