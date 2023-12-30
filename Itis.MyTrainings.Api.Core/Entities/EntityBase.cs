@@ -9,7 +9,7 @@ public class EntityBase : IEntity
     /// <summary>
     /// ИД сущности
     /// </summary>
-    [ScaffoldColumn(false)]
+    [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
 }
