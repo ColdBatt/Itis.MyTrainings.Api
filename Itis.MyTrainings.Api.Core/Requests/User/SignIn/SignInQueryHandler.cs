@@ -41,7 +41,7 @@ public class SignInQueryHandler : IRequestHandler<SignInQuery, SignInResponse>
         if (result.Succeeded)
         {
             var role = await _userService.GetRoleAsync(user);
-            token = _jwtService.GenerateJwt(user.Id, role!);
+            token = _jwtService.GenerateJwt(user.Id, role!, user.Email);
         }
 
         return new SignInResponse(result, token);

@@ -20,7 +20,7 @@ public class EmailSenderService: IEmailSenderService
     }
     
     /// <inheritdoc />
-    public async Task SendMessageAsync(string? subject, string body, string sendTo, Dictionary<string, string>? placeholders)
+    public async Task SendMessageAsync(string? subject, string body, string sendTo, Dictionary<string, string>? placeholders, CancellationToken cancellationToken)
     {
         if (placeholders != null)
             foreach (var (placeholder, value) in placeholders)
@@ -44,7 +44,7 @@ public class EmailSenderService: IEmailSenderService
             EnableSsl = true,
             UseDefaultCredentials = false,
         };
-
-        await smtp.SendMailAsync(message);
+        
+        await smtp.SendMailAsync(message, cancellationToken);
     }
 }

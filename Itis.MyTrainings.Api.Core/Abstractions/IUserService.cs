@@ -18,12 +18,26 @@ public interface IUserService
     public Task<IdentityResult> RegisterUserAsync(User user, string password);
 
     /// <summary>
+    /// Зарегестрировать пользователя
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <returns></returns>
+    public Task<IdentityResult> RegisterUserAsync(User user);
+
+    /// <summary>
+    /// Найти пользователя по id
+    /// </summary>
+    /// <param name="guid"></param>
+    /// <returns></returns>
+    public Task<User?> FindUserByIdAsync(Guid guid);
+
+    /// <summary>
     /// Добавить связь пользователя с ролью
     /// </summary>
     /// <param name="user">Пользователь</param>
     /// <param name="roleName">Имя роли</param>
     /// <returns></returns>
-    public Task<IdentityResult> AddUserRole(User user, string roleName);
+    public Task<IdentityResult> AddUserRoleAsync(User user, string roleName);
     
     /// <summary>
     /// Добавить дополнительную информацию о пользователе
@@ -69,7 +83,7 @@ public interface IUserService
     /// <param name="code">Код подтверждения</param>
     /// <param name="newPassword">Новый пароль</param>
     /// <returns></returns>
-    public Task<IdentityResult> ResetPasswordAsync(User user, string code, string newPassword);
+    public Task<IdentityResult> SetPasswordWithEmailAsync(User user, string code, string newPassword);
 
     /// <summary>
     /// Получить персональный токен для сброса пароля
@@ -77,4 +91,12 @@ public interface IUserService
     /// <param name="user">Пользователь</param>
     /// <returns></returns>
     public Task<string> GetPasswordResetTokenAsync(User user);
+
+    /// <summary>
+    /// Получить профиль пользователя по id
+    /// </summary>
+    /// <param name="userProfileId">Идентификатор профиля пользователя</param>
+    /// <param name="cancellationToken">CancellationToken</param>
+    /// <returns></returns>
+    public Task<UserProfile?> FindUserProfileById(Guid? userProfileId, CancellationToken cancellationToken);
 }

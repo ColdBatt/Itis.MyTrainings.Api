@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using Itis.MyTrainings.Api.Contracts.Requests.User.RegisterUser;
 using Itis.MyTrainings.Api.Core.Abstractions;
 using Itis.MyTrainings.Api.Core.Entities;
@@ -30,8 +31,14 @@ public class RegisterUserCommandHandler
     }
 
     /// <inheritdoc />
-    public async Task<RegisterUserResponse> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public async Task<RegisterUserResponse> Handle(
+        RegisterUserCommand request, 
+        CancellationToken cancellationToken)
     {
+        var isUserExist = await _userService.FindUserByEmailAsync(request.Email);
+        if (isUserExist != null)
+            throw new ValidationException("Пользователь с данной почтой уже существует");
+        
         var isRoleExist = await _roleService.IsRoleExistAsync(request.Role);
         if (!isRoleExist)
             throw new EntityNotFoundException<Role>($"Роли \"{request.Role}\" не существует");
@@ -47,7 +54,7 @@ public class RegisterUserCommandHandler
         var result = await _userService.RegisterUserAsync(user, request.Password);
 
         if (result.Succeeded)
-            await _userService.AddUserRole(user, request.Role);
+            await _userService.AddUserRoleAsync(user, request.Role);
 
         var claims = new List<Claim>
         {

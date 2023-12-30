@@ -29,4 +29,11 @@ public class EfContext: IdentityDbContext<User, Role, Guid>, IDbContext
     {
         modelBuilder.Seed();
     }
+    
+    /// <inheritdoc />
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
+        await SaveChangesAsync(true, cancellationToken);
+
+    /// <inheritdoc />
+    public DbSet<UserProfile> UserProfiles { get; set; }
 }

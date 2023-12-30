@@ -45,12 +45,13 @@ public static class WebApplicationBuilderExtensions
     public static void ConfigureCore(this WebApplicationBuilder builder)
     {
         builder.Services.AddMediatR(typeof(User));
-
         builder.Services.AddScoped<IDbContext, EfContext>();
         builder.Services.AddScoped<IUserService, UserService>();
-        builder.Services.AddScoped<IJwtService, JwtService>();
+        builder.Services.AddSingleton<IJwtService, JwtService>();
         builder.Services.AddScoped<IRoleService, RoleService>();
-        builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
+        builder.Services.AddSingleton<IEmailSenderService, EmailSenderService>();
+        builder.Services.AddScoped<IVkService, VkService>();
+        builder.Services.AddSingleton<IHttpHelperService, HttpHelperService>();
         builder.Services
             .AddIdentity<User, Role>(opt =>
             {
@@ -61,7 +62,8 @@ public static class WebApplicationBuilderExtensions
             })
             .AddEntityFrameworkStores<EfContext>()
             .AddDefaultTokenProviders();
-
+        builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+            options.TokenLifespan = TimeSpan.FromMinutes(5));
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddCustomSwagger();
@@ -90,7 +92,12 @@ public static class WebApplicationBuilderExtensions
         var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
         
         builder.Services
-            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters

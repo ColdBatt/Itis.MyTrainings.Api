@@ -2,6 +2,7 @@
 using Itis.MyTrainings.Api.Core.Abstractions;
 using Itis.MyTrainings.Api.Core.Exceptions;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 
 namespace Itis.MyTrainings.Api.Core.Requests.User.ResetPassword;
 
@@ -26,7 +27,16 @@ public class ResetPasswordCommandHandler
         var user = await _userService.FindUserByEmailAsync(request.Email)
             ?? throw new EntityNotFoundException<Entities.User>($"Не найдены пользователи со следующим email: {request.Email}");
 
-        var result = await _userService.ResetPasswordAsync(user, request.Code, request.Password);
+        IdentityResult result;
+        try
+        {
+            result = await _userService.SetPasswordWithEmailAsync(user, request.Code, request.Password);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw;
+        }
 
         return new ResetPasswordResponse(result);
     }

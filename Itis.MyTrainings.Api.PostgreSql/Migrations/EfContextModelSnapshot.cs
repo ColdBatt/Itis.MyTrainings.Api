@@ -44,19 +44,19 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("528e5a8a-d42b-4d57-9745-2e5982c5d259"),
+                            Id = new Guid("dfee8cc1-a4fa-4a5e-9ab6-723fcf49c9c2"),
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = new Guid("4e556bc3-d6b7-4be0-910f-8e7da06c27d0"),
+                            Id = new Guid("b2790f59-7141-4979-bc42-5474008bb17d"),
                             Name = "Coach",
                             NormalizedName = "COACH"
                         },
                         new
                         {
-                            Id = new Guid("92c909e1-19fd-4583-ad58-1fcacaf11bcb"),
+                            Id = new Guid("aaed8239-88b2-41df-a174-3aabc82c6c58"),
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -109,6 +109,9 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<Guid?>("ProfileId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
@@ -120,7 +123,47 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProfileId");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Itis.MyTrainings.Api.Core.Entities.UserProfile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DietaryPreferences")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Height")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MedicalSickness")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int?>("WeeklyTrainingFrequency")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Weight")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -216,6 +259,15 @@ namespace Itis.MyTrainings.Api.PostgreSql.Migrations
                         .HasColumnType("text");
 
                     b.ToTable("UserTokens");
+                });
+
+            modelBuilder.Entity("Itis.MyTrainings.Api.Core.Entities.User", b =>
+                {
+                    b.HasOne("Itis.MyTrainings.Api.Core.Entities.UserProfile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId");
+
+                    b.Navigation("Profile");
                 });
 #pragma warning restore 612, 618
         }
